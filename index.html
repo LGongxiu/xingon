@@ -413,13 +413,12 @@ section.rule, .band, #resumen, #t-video { scroll-margin-top: calc(var(--barh) + 
 .is-popping { animation: pop .55s cubic-bezier(.2, .9, .3, 1.3) both; animation-delay: calc(var(--i, 0) * 80ms); }
 
 .zoomable { cursor: zoom-in; }
-.discard img, .card-list img, .about-cards img {
-  position: relative; transition: translate .2s ease, scale .2s ease, box-shadow .2s ease;
-}
-.discard img:hover, .card-list img:hover, .about-cards img:hover,
-.zoomable:focus-visible {
+.discard img { position: relative; }
+.discard img, .card-list img, .about-cards img { transition: translate .2s ease, scale .2s ease, box-shadow .2s ease; }
+.discard img:hover, .about-cards img:hover, .discard img:focus-visible, .about-cards img:focus-visible {
   translate: 0 -8px; scale: 1.08; z-index: 3; box-shadow: 0 16px 28px rgba(0, 0, 0, .5);
 }
+.card-list img:hover, .card-list img:focus-visible { scale: 1.12; box-shadow: 0 10px 22px rgba(0, 0, 0, .5); }
 .swatch { transition: translate .2s ease; }
 .swatch:hover { translate: 0 -5px; }
 
@@ -446,6 +445,29 @@ section.rule, .band, #resumen, #t-video { scroll-margin-top: calc(var(--barh) + 
 @media (prefers-reduced-motion: reduce) {
   .fan img, .is-popping, .lb-fig { animation: none; }
   .discard img, .card-list img, .about-cards img, .swatch { transition: none; }
+}
+
+/* ---------- refinements ---------- */
+.objective { font-family: var(--body); font-weight: 400; font-size: 1.05rem; line-height: 1.6; }
+.steps li { grid-template-columns: 32px minmax(0, 1fr); gap: 12px; }
+.steps li::before { width: 32px; height: 32px; font-size: 1.05rem; border-radius: 9px; }
+:root { --toch: 0px; }
+section.rule { scroll-margin-top: calc(var(--barh) + var(--toch) + 16px); }
+.toc a[aria-current="true"] { color: var(--yellow); }
+@media (max-width: 860px) {
+  .toc {
+    position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--barh)); z-index: 25;
+    background: var(--table); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+    padding: 8px max(16px, env(safe-area-inset-left, 0px)); border-bottom: 2px solid var(--line);
+  }
+  .rules .wrap { grid-template-columns: minmax(0, 1fr); }
+  .toc { min-width: 0; }
+  .toc .eyebrow { display: none; }
+  .toc ol { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .toc ol::-webkit-scrollbar { display: none; }
+  .toc li { flex: none; }
+  .toc a { white-space: nowrap; }
+  .toc a[aria-current="true"] { border-color: var(--yellow); }
 }
 </style>
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -972,7 +994,7 @@ section.rule, .band, #resumen, #t-video { scroll-margin-top: calc(var(--barh) + 
   stuck(); window.addEventListener("scroll", stuck, { passive: true });
 
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var targets = document.querySelectorAll(".discard img, .card-list img, .swatch, .about-cards img, .burst, .verdict .tag, .quick li, .chip");
+  var targets = document.querySelectorAll(".discard img, .swatch, .about-cards img, .burst, .verdict .tag, .quick li, .chip");
   if (!reduce && "IntersectionObserver" in window) {
     targets.forEach(function (el) {
       var sib = Array.prototype.indexOf.call(el.parentNode.children, el);
@@ -1033,6 +1055,33 @@ section.rule, .band, #resumen, #t-video { scroll-margin-top: calc(var(--barh) + 
 
   var prev = window.xgOnLang;
   window.xgOnLang = function (dict) { d = dict; if (prev) prev(dict); label(); };
+})();
+
+/* mobile sticky index + current section */
+(function () {
+  var root = document.documentElement, toc = document.querySelector(".toc");
+  if (!toc) return;
+  function measure() {
+    var sticky = getComputedStyle(toc).position === "sticky" && window.innerWidth <= 860;
+    root.style.setProperty("--toch", sticky ? toc.offsetHeight + "px" : "0px");
+  }
+  measure(); window.addEventListener("resize", measure);
+  var links = {}, strip = toc.querySelector("ol");
+  toc.querySelectorAll("a[href^='#']").forEach(function (a) { links[a.getAttribute("href").slice(1)] = a; });
+  if (!("IntersectionObserver" in window)) return;
+  var current = null;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var a = links[e.target.id]; if (!a || a === current) return;
+      if (current) current.removeAttribute("aria-current");
+      a.setAttribute("aria-current", "true"); current = a;
+      if (strip.scrollWidth > strip.clientWidth) {
+        strip.scrollTo({ left: a.parentNode.offsetLeft - 16, behavior: "smooth" });
+      }
+    });
+  }, { rootMargin: "-30% 0px -60% 0px" });
+  document.querySelectorAll("section.rule[id]").forEach(function (s) { io.observe(s); });
 })();
 
 </script>
