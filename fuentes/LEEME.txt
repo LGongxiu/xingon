@@ -1,0 +1,11 @@
+Fuentes para la factura en PDF (opcional)
+
+La app usa Nunito Sans y ADLaM Display desde Google Fonts automáticamente.
+Para que la FACTURA EN PDF también las use, descarga las fuentes y pon aquí los .ttf:
+
+  https://fonts.google.com/specimen/Nunito+Sans  -> Get font -> Download
+      copia de la carpeta "static": NunitoSans_10pt-Regular.ttf y NunitoSans_10pt-Bold.ttf
+  https://fonts.google.com/specimen/ADLaM+Display -> Get font -> Download
+      copia: ADLaMDisplay-Regular.ttf
+
+Si no están, la factura sale con Helvetica.
