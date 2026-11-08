@@ -13,10 +13,10 @@
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://lgongxiu.github.io/xingon/">
+<meta property="og:url" content="https://www.xingon.es/">
 <meta property="og:title" content="XINGON!">
 <meta property="og:description" content="Un juego de cartas lleno de faroles: di qué cartas pones, y que los demás decidan si te creen.">
-<meta property="og:image" content="https://lgongxiu.github.io/xingon/assets/og.jpg">
+<meta property="og:image" content="https://www.xingon.es/assets/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -481,6 +481,10 @@ section.rule { scroll-margin-top: calc(var(--barh) + var(--toch) + 16px); }
 
 .legal-link { color: var(--muted); font-size: .9rem; text-decoration: underline; text-underline-offset: 3px; }
 .legal-link:hover { color: var(--yellow); }
+
+.ig-link { display: inline-flex; align-items: center; gap: 8px; color: var(--ink, #fff); font-weight: 800; text-decoration: none; padding: 8px 14px; border: 2px solid var(--line); border-radius: 999px; transition: color .15s, border-color .15s, transform .15s; }
+.ig-link:hover { color: var(--yellow); border-color: var(--yellow); transform: translateY(-1px); }
+.ig-link svg { display: block; }
 </style>
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -810,6 +814,10 @@ section.rule { scroll-margin-top: calc(var(--barh) + var(--toch) + 16px); }
   <div class="wrap">
     <img src="assets/logo.png" alt="XINGON!">
     <p class="muted" data-t="by">Un juego de Laia G. Grasas</p>
+    <a class="ig-link" href="https://www.instagram.com/xingonplay/" target="_blank" rel="noopener" aria-label="Instagram @xingonplay">
+      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
+      <span>@xingonplay</span>
+    </a>
     <a class="legal-link" href="legal.html" data-t="legal">Aviso legal y privacidad</a>
   </div>
 </footer>
