@@ -415,7 +415,6 @@ section.rule, .band, #resumen, #t-video { scroll-margin-top: calc(var(--barh) + 
 .fan img:nth-child(5) { animation-delay: .32s; }
 .is-popping { animation: pop .55s cubic-bezier(.2, .9, .3, 1.3) both; animation-delay: calc(var(--i, 0) * 80ms); }
 
-.zoomable { cursor: zoom-in; }
 .discard img { position: relative; }
 .discard img, .card-list img, .about-cards img { transition: translate .2s ease, scale .2s ease, box-shadow .2s ease; }
 .discard img:hover, .about-cards img:hover, .discard img:focus-visible, .about-cards img:focus-visible {
@@ -425,28 +424,8 @@ section.rule, .band, #resumen, #t-video { scroll-margin-top: calc(var(--barh) + 
 .swatch, .chip { transition: scale .2s ease; }
 .swatch:hover, .chip:hover { scale: 1.08; }
 
-/* ---------- pop-up card view ---------- */
-.lightbox {
-  position: fixed; inset: 0; z-index: 50; display: grid; place-items: center;
-  padding: calc(env(safe-area-inset-top, 0px) + 24px) max(16px, env(safe-area-inset-right, 0px))
-           calc(env(safe-area-inset-bottom, 0px) + 24px) max(16px, env(safe-area-inset-left, 0px));
-  background: rgba(2, 10, 30, .86); cursor: zoom-out;
-}
-.lb-fig { margin: 0; display: grid; gap: 14px; justify-items: center; animation: pop .45s cubic-bezier(.2, .9, .3, 1.3) both; }
-.lb-fig img {
-  width: auto; max-width: min(360px, 82vw); max-height: 72vh; height: auto;
-  border-radius: 18px; box-shadow: 0 24px 60px rgba(0, 0, 0, .6);
-}
-.lb-fig figcaption { font-family: var(--display); font-weight: 800; font-size: 1.3rem; color: var(--ink); text-align: center; }
-.lb-close {
-  position: absolute; top: calc(env(safe-area-inset-top, 0px) + 14px); right: max(16px, env(safe-area-inset-right, 0px));
-  width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--line);
-  background: var(--felt); color: var(--ink); font-size: 1.6rem; line-height: 1; cursor: pointer;
-}
-.lb-close:hover { border-color: var(--yellow); }
-
 @media (prefers-reduced-motion: reduce) {
-  .fan img, .is-popping, .lb-fig { animation: none; }
+  .fan img, .is-popping { animation: none; }
   .discard img, .card-list img, .about-cards img, .swatch, .chip { transition: none; }
 }
 
@@ -528,11 +507,11 @@ section.rule { scroll-margin-top: calc(var(--barh) + var(--toch) + 16px); }
       </ul>
     </div>
     <div class="fan">
-      <img src="assets/Y-C5.webp" data-card="Y-C5" data-big="assets/big/Y-C5.webp" class="zoomable" alt="">
-      <img src="assets/B-T3.webp" data-card="B-T3" data-big="assets/big/B-T3.webp" class="zoomable" alt="">
-      <img src="assets/BACK.webp" data-card="BACK" data-big="assets/big/BACK.webp" class="zoomable" alt="">
-      <img src="assets/G-S1.webp" data-card="G-S1" data-big="assets/big/G-S1.webp" class="zoomable" alt="">
-      <img src="assets/R-C4.webp" data-card="R-C4" data-big="assets/big/R-C4.webp" class="zoomable" alt="">
+      <img src="assets/Y-C5.webp" data-card="Y-C5" alt="">
+      <img src="assets/B-T3.webp" data-card="B-T3" alt="">
+      <img src="assets/BACK.webp" data-card="BACK" alt="">
+      <img src="assets/G-S1.webp" data-card="G-S1" alt="">
+      <img src="assets/R-C4.webp" data-card="R-C4" alt="">
     </div>
   </div>
 </header>
@@ -670,7 +649,7 @@ section.rule { scroll-margin-top: calc(var(--barh) + var(--toch) + 16px); }
         <h2 data-t="n_discard">Descarte</h2>
         <div class="side">
           <div class="discard">
-            <img src="assets/Y-S3.webp" data-card="Y-S3" data-big="assets/big/Y-S3.webp" class="zoomable" alt=""><img src="assets/B-S3.webp" data-card="B-S3" data-big="assets/big/B-S3.webp" class="zoomable" alt=""><img src="assets/G-S3.webp" data-card="G-S3" data-big="assets/big/G-S3.webp" class="zoomable" alt=""><img src="assets/R-S3.webp" data-card="R-S3" data-big="assets/big/R-S3.webp" class="zoomable" alt="">
+            <img src="assets/Y-S3.webp" data-card="Y-S3" alt=""><img src="assets/B-S3.webp" data-card="B-S3" alt=""><img src="assets/G-S3.webp" data-card="G-S3" alt=""><img src="assets/R-S3.webp" data-card="R-S3" alt="">
           </div>
           <p data-t="discard">Si reúnes 4 cartas del mismo número y figura (los 4 colores), enséñalas y descártalas en cualquier momento.</p>
         </div>
@@ -683,18 +662,18 @@ section.rule { scroll-margin-top: calc(var(--barh) + var(--toch) + 16px); }
             <h3 data-t="wild_title">Comodines</h3>
             <p class="muted" data-t="wild">Se juegan cuando quieras, boca abajo.</p>
             <ul class="card-list">
-              <li><img src="assets/W-GEN.webp" data-card="W-GEN" data-big="assets/big/W-GEN.webp" class="zoomable" alt=""><div><strong data-t="w_gen">General</strong><p data-t="w_gen_d">Vale por cualquier carta: siempre cumple el condicionante. Hay 2 cartas de este tipo.</p></div></li>
-              <li><img src="assets/W-FIG.webp" data-card="W-FIG" data-big="assets/big/W-FIG.webp" class="zoomable" alt=""><div><strong data-t="shape">Figura</strong><p data-t="w_fig_d">Vale por cualquier figura. Solo cumple si el condicionante pide únicamente figura.</p></div></li>
-              <li><img src="assets/W-COL.webp" data-card="W-COL" data-big="assets/big/W-COL.webp" class="zoomable" alt=""><div><strong data-t="color">Color</strong><p data-t="w_col_d">Vale por cualquier color. Solo cumple si el condicionante pide únicamente color.</p></div></li>
-              <li><img src="assets/W-NUM.webp" data-card="W-NUM" data-big="assets/big/W-NUM.webp" class="zoomable" alt=""><div><strong data-t="number">Número</strong><p data-t="w_num_d">Vale por cualquier número. Solo cumple si el condicionante pide únicamente número.</p></div></li>
+              <li><img src="assets/W-GEN.webp" data-card="W-GEN" alt=""><div><strong data-t="w_gen">General</strong><p data-t="w_gen_d">Vale por cualquier carta: siempre cumple el condicionante. Hay 2 cartas de este tipo.</p></div></li>
+              <li><img src="assets/W-FIG.webp" data-card="W-FIG" alt=""><div><strong data-t="shape">Figura</strong><p data-t="w_fig_d">Vale por cualquier figura. Solo cumple si el condicionante pide únicamente figura.</p></div></li>
+              <li><img src="assets/W-COL.webp" data-card="W-COL" alt=""><div><strong data-t="color">Color</strong><p data-t="w_col_d">Vale por cualquier color. Solo cumple si el condicionante pide únicamente color.</p></div></li>
+              <li><img src="assets/W-NUM.webp" data-card="W-NUM" alt=""><div><strong data-t="number">Número</strong><p data-t="w_num_d">Vale por cualquier número. Solo cumple si el condicionante pide únicamente número.</p></div></li>
             </ul>
           </div>
           <div>
             <h3 data-t="sp_title">Especiales</h3>
             <p class="muted" data-t="special">Se juegan boca arriba, solo en tu turno y una vez por partida. Después se descartan.</p>
             <ul class="card-list">
-              <li><img src="assets/SP-SKIP.webp" data-card="SP-SKIP" data-big="assets/big/SP-SKIP.webp" class="zoomable" alt=""><div><strong data-t="sp_skip">Saltar turno</strong><p data-t="sp_skip_d">Te saltas tu propio turno: no tienes que creer ni dudar, y decide el siguiente jugador.</p></div></li>
-              <li><img src="assets/SP-DIR.webp" data-card="SP-DIR" data-big="assets/big/SP-DIR.webp" class="zoomable" alt=""><div><strong data-t="sp_dir">Cambio de dirección</strong><p data-t="sp_dir_d">El turno pasa a ir en sentido contrario. Hay 2 cartas de este tipo.</p></div></li>
+              <li><img src="assets/SP-SKIP.webp" data-card="SP-SKIP" alt=""><div><strong data-t="sp_skip">Saltar turno</strong><p data-t="sp_skip_d">Te saltas tu propio turno: no tienes que creer ni dudar, y decide el siguiente jugador.</p></div></li>
+              <li><img src="assets/SP-DIR.webp" data-card="SP-DIR" alt=""><div><strong data-t="sp_dir">Cambio de dirección</strong><p data-t="sp_dir_d">El turno pasa a ir en sentido contrario. Hay 2 cartas de este tipo.</p></div></li>
             </ul>
           </div>
         </div>
@@ -790,7 +769,7 @@ section.rule { scroll-margin-top: calc(var(--barh) + var(--toch) + 16px); }
   <div class="wrap">
     <div class="about-grid">
       <div class="about-cards">
-        <img src="assets/BACK.webp" data-card="BACK" data-big="assets/big/BACK.webp" class="zoomable" alt=""><img src="assets/W-GEN.webp" data-card="W-GEN" data-big="assets/big/W-GEN.webp" class="zoomable" alt="">
+        <img src="assets/BACK.webp" data-card="BACK" alt=""><img src="assets/W-GEN.webp" data-card="W-GEN" alt="">
       </div>
       <div class="about-text">
         <h2 id="t-about" data-t="about_title">Sobre la autora</h2>
@@ -802,13 +781,6 @@ section.rule { scroll-margin-top: calc(var(--barh) + var(--toch) + 16px); }
   </div>
 </section>
 
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lb-cap" hidden>
-  <button type="button" class="lb-close" id="lb-close" aria-label="Cerrar">×</button>
-  <figure class="lb-fig">
-    <img id="lb-img" src="" alt="">
-    <figcaption id="lb-cap"></figcaption>
-  </figure>
-</div>
 
 <footer>
   <div class="wrap">
@@ -1048,37 +1020,14 @@ section.rule { scroll-margin-top: calc(var(--barh) + var(--toch) + 16px); }
     if (k === "BACK") return "XINGON! · " + d.lb_back;
     return k;
   }
-  var cards = document.querySelectorAll(".zoomable");
+  var cards = document.querySelectorAll("img[data-card]");
   function label() {
     cards.forEach(function (img) {
       var n = cardName(img.getAttribute("data-card"));
-      img.alt = n; img.setAttribute("aria-label", d.lb_open + ": " + n);
+      img.alt = n;
     });
-    var c = document.getElementById("lb-close"); if (c) c.setAttribute("aria-label", d.lb_close);
   }
-  cards.forEach(function (img) { img.tabIndex = 0; img.setAttribute("role", "button"); });
   label();
-
-  var lb = document.getElementById("lightbox"), lbImg = document.getElementById("lb-img"),
-      lbCap = document.getElementById("lb-cap"), lbClose = document.getElementById("lb-close"), opener = null;
-  function open(img) {
-    opener = img;
-    lbImg.src = img.getAttribute("data-big") || img.src;
-    lbImg.alt = img.alt; lbCap.textContent = img.alt;
-    lb.hidden = false; document.body.style.overflow = "hidden"; lbClose.focus();
-  }
-  function close() {
-    lb.hidden = true; document.body.style.overflow = "";
-    if (opener) { opener.focus(); opener = null; }
-  }
-  cards.forEach(function (img) {
-    img.addEventListener("click", function () { open(img); });
-    img.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(img); }
-    });
-  });
-  lb.addEventListener("click", function (e) { if (e.target !== lbImg) close(); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !lb.hidden) close(); });
 
   var prev = window.xgOnLang;
   window.xgOnLang = function (dict) { d = dict; if (prev) prev(dict); label(); };
