@@ -15,9 +15,12 @@ body{margin:0;background:#041539;color:#f5f7fc;font:400 1.02rem/1.65 "Nunito San
 .wrap{max-width:760px;margin:0 auto;padding:28px 16px 64px}
 header{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-bottom:28px}
 header a img{width:150px;height:auto;display:block}
-.langs{display:flex;gap:6px}
-.langs button{font:700 .95rem "Nunito Sans",sans-serif;color:#b3bfdc;background:transparent;border:2px solid #22407f;border-radius:999px;padding:6px 14px;cursor:pointer}
-.langs button[aria-pressed="true"]{background:#eaad02;border-color:#eaad02;color:#041539}
+.langsel{position:relative;display:inline-flex;align-items:center;color:#b3bfdc}
+.langsel svg{position:absolute;pointer-events:none}
+.langsel svg.g{left:12px} .langsel svg.chev{right:12px}
+.langsel select{appearance:none;-webkit-appearance:none;font:700 .95rem "Nunito Sans",sans-serif;color:#f5f7fc;background:#0c2459;border:2px solid #22407f;border-radius:999px;padding:8px 36px 8px 38px;cursor:pointer}
+.langsel select:focus,.langsel select:hover{border-color:#eaad02;outline:none}
+.langsel option{background:#041539;color:#f5f7fc}
 h1,h2{font-family:"ADLaM Display","Nunito Sans",sans-serif;font-weight:400;line-height:1.15}
 h1{font-size:clamp(1.8rem,5vw,2.4rem);color:#eaad02;margin:0 0 18px}
 h2{font-size:1.25rem;margin:28px 0 8px}
@@ -33,11 +36,11 @@ a{color:#eaad02}
 <div class="wrap">
 <header>
   <a href="./" aria-label="XINGON!"><img src="assets/logo.png" alt="XINGON!" onerror="this.replaceWith(document.createTextNode('XINGON!'))"></a>
-  <div class="langs">
-    <button type="button" data-lang="es">Español</button>
-    <button type="button" data-lang="ca">Català</button>
-    <button type="button" data-lang="en">English</button>
-  </div>
+  <label class="langsel">
+    <svg class="g" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3c2.6 2.8 3.9 5.8 3.9 9s-1.3 6.2-3.9 9c-2.6-2.8-3.9-5.8-3.9-9S9.4 5.8 12 3z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+    <select id="langsel" aria-label="Idioma / Language"><option value="es" lang="es">Español</option><option value="ca" lang="ca">Català</option><option value="en" lang="en">English</option><option value="fr" lang="fr">Français</option><option value="pt" lang="pt">Português</option><option value="de" lang="de">Deutsch</option><option value="it" lang="it">Italiano</option></select>
+    <svg class="chev" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </label>
 </header>
 <article id="es" lang="es" class="lg" hidden>
 <h1>Aviso legal y privacidad</h1>
@@ -62,8 +65,7 @@ a{color:#eaad02}
 <h2>Tus derechos</h2>
 <p>Si tienes cualquier duda sobre tus datos, escríbenos a <a href="mailto:xingonplay@gmail.com">xingonplay@gmail.com</a>. También puedes presentar una reclamación ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" rel="noopener">aepd.es</a>).</p>
 <p class="upd">Última actualización: noviembre de 2026</p>
-<p class="back"><a href="./">← Volver a XINGON!</a></p></article>
-<article id="ca" lang="ca" class="lg" hidden>
+<p class="back"><a href="./">← Volver a XINGON!</a></p></article><article id="ca" lang="ca" class="lg" hidden>
 <h1>Avís legal i privacitat</h1>
 <h2>Titular del web</h2>
 <p><strong>Titular:</strong> Laia Gongxiu Grasas Leon</p>
@@ -86,8 +88,7 @@ a{color:#eaad02}
 <h2>Els teus drets</h2>
 <p>Si tens qualsevol dubte sobre les teves dades, escriu-nos a <a href="mailto:xingonplay@gmail.com">xingonplay@gmail.com</a>. També pots presentar una reclamació davant l’Agència Espanyola de Protecció de Dades (<a href="https://www.aepd.es" rel="noopener">aepd.es</a>).</p>
 <p class="upd">Darrera actualització: novembre de 2026</p>
-<p class="back"><a href="./">← Tornar a XINGON!</a></p></article>
-<article id="en" lang="en" class="lg" hidden>
+<p class="back"><a href="./">← Tornar a XINGON!</a></p></article><article id="en" lang="en" class="lg" hidden>
 <h1>Legal notice & privacy</h1>
 <h2>Website owner</h2>
 <p><strong>Owner:</strong> Laia Gongxiu Grasas Leon</p>
@@ -110,20 +111,118 @@ a{color:#eaad02}
 <h2>Your rights</h2>
 <p>If you have any question about your data, write to <a href="mailto:xingonplay@gmail.com">xingonplay@gmail.com</a>. You can also lodge a complaint with the Spanish Data Protection Agency (<a href="https://www.aepd.es" rel="noopener">aepd.es</a>).</p>
 <p class="upd">Last updated: November 2026</p>
-<p class="back"><a href="./">← Back to XINGON!</a></p></article>
+<p class="back"><a href="./">← Back to XINGON!</a></p></article><article id="fr" lang="fr" class="lg" hidden>
+<h1>Mentions légales et confidentialité</h1>
+<h2>Propriétaire du site</h2>
+<p><strong>Propriétaire :</strong> Laia Gongxiu Grasas Leon</p>
+<p><strong>Lieu :</strong> Barcelone (Espagne)</p>
+<p><strong>Contact :</strong> <a href="mailto:xingonplay@gmail.com">xingonplay@gmail.com</a></p>
+<h2>À propos de ce site</h2>
+<p>Ce site présente XINGON!, un jeu de cartes : comment y jouer, questions fréquentes, vidéo et un marqueur pour noter les points. Aucun produit n’est vendu par ce site pour le moment.</p>
+<h2>Propriété intellectuelle</h2>
+<p>Le nom XINGON!, le logo, les illustrations et le design des cartes, les textes, les règles et les vidéos sont l’œuvre de la propriétaire. Il est interdit de les copier, de les modifier ou de les utiliser à des fins commerciales sans son autorisation écrite. Vous pouvez en revanche partager des liens vers ce site.</p>
+<h2>Responsabilité</h2>
+<p>Les informations de ce site sont données à titre indicatif. La propriétaire veille à ce qu’elles soient exactes et à jour, mais n’est pas responsable de l’usage qui en est fait.</p>
+<h2>Confidentialité : quelles données sont traitées</h2>
+<p>Ce site n’a ni formulaire ni inscription, et ne vous demande aucune donnée personnelle.</p>
+<p><strong>Statistiques de visite.</strong> Nous utilisons GoatCounter pour compter les visites de façon agrégée (pages vues, site de provenance, type de navigateur et pays approximatif). Il n’utilise pas de cookies, n’enregistre pas votre adresse IP, et ne crée pas de profils ni ne vous suit sur d’autres sites.</p>
+<p><strong>Hébergement.</strong> Le site est hébergé sur GitHub Pages (GitHub, Inc.). Comme tout serveur, il peut enregistrer des données techniques de connexion, comme l’adresse IP, pour des raisons de sécurité. Plus d’informations dans la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">déclaration de confidentialité de GitHub</a>.</p>
+<p><strong>Polices.</strong> Les polices sont servies par ce site lui-même ; votre navigateur ne se connecte à aucun service externe pour les charger.</p>
+<h2>Cookies et stockage dans le navigateur</h2>
+<p>Ce site n’utilise pas de cookies.</p>
+<p>Pour fonctionner comme prévu, votre navigateur enregistre la langue choisie et les points du marqueur (stockage local). Ces informations restent uniquement sur votre appareil, ne sont envoyées à personne, et vous pouvez les effacer à tout moment depuis les réglages du navigateur ou avec le bouton de remise à zéro du marqueur.</p>
+<h2>Vos droits</h2>
+<p>Pour toute question sur vos données, écrivez à <a href="mailto:xingonplay@gmail.com">xingonplay@gmail.com</a>. Vous pouvez aussi déposer une réclamation auprès de l’Agence espagnole de protection des données (<a href="https://www.aepd.es" rel="noopener">aepd.es</a>).</p>
+<p class="upd">Dernière mise à jour : novembre 2026</p>
+<p class="back"><a href="./">← Retour à XINGON!</a></p></article><article id="pt" lang="pt" class="lg" hidden>
+<h1>Aviso legal e privacidade</h1>
+<h2>Titular do site</h2>
+<p><strong>Titular:</strong> Laia Gongxiu Grasas Leon</p>
+<p><strong>Localização:</strong> Barcelona (Espanha)</p>
+<p><strong>Contacto:</strong> <a href="mailto:xingonplay@gmail.com">xingonplay@gmail.com</a></p>
+<h2>O que é este site</h2>
+<p>Este site informa sobre o XINGON!, um jogo de cartas: como se joga, perguntas frequentes, vídeo e um marcador para apontar os pontos. Por agora não se vendem produtos através dele.</p>
+<h2>Propriedade intelectual</h2>
+<p>O nome XINGON!, o logótipo, as ilustrações e o design das cartas, os textos, as regras e os vídeos são obra da titular. Não é permitido copiá-los, modificá-los nem usá-los para fins comerciais sem a sua autorização escrita. Pode partilhar ligações para este site.</p>
+<h2>Responsabilidade</h2>
+<p>A informação deste site é orientativa. A titular procura que seja correta e esteja atualizada, mas não se responsabiliza pelo uso que dela se faça.</p>
+<h2>Privacidade: que dados são tratados</h2>
+<p>Este site não tem formulários nem registo, e não lhe pede nenhum dado pessoal.</p>
+<p><strong>Estatísticas de visitas.</strong> Usamos o GoatCounter para contar as visitas de forma agregada (páginas vistas, site de origem, tipo de navegador e país aproximado). Não usa cookies, não guarda o seu endereço IP, e não cria perfis nem o segue noutros sites.</p>
+<p><strong>Alojamento.</strong> O site está alojado no GitHub Pages (GitHub, Inc.). Como qualquer servidor, pode registar dados técnicos da ligação, como o endereço IP, por motivos de segurança. Mais informação na <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">declaração de privacidade do GitHub</a>.</p>
+<p><strong>Tipos de letra.</strong> Os tipos de letra são servidos a partir deste mesmo site; o seu navegador não se liga a serviços externos para os carregar.</p>
+<h2>Cookies e armazenamento no navegador</h2>
+<p>Este site não usa cookies.</p>
+<p>Para funcionar como espera, o seu navegador guarda o idioma que escolhe e as pontuações do marcador (armazenamento local). Essa informação fica apenas no seu dispositivo, não é enviada a ninguém, e pode apagá-la quando quiser nas definições do navegador ou com o botão de recomeçar do marcador.</p>
+<h2>Os seus direitos</h2>
+<p>Se tiver qualquer dúvida sobre os seus dados, escreva para <a href="mailto:xingonplay@gmail.com">xingonplay@gmail.com</a>. Também pode apresentar uma reclamação junto da Agência Espanhola de Proteção de Dados (<a href="https://www.aepd.es" rel="noopener">aepd.es</a>).</p>
+<p class="upd">Última atualização: novembro de 2026</p>
+<p class="back"><a href="./">← Voltar a XINGON!</a></p></article><article id="de" lang="de" class="lg" hidden>
+<h1>Impressum und Datenschutz</h1>
+<h2>Inhaberin der Website</h2>
+<p><strong>Inhaberin:</strong> Laia Gongxiu Grasas Leon</p>
+<p><strong>Ort:</strong> Barcelona (Spanien)</p>
+<p><strong>Kontakt:</strong> <a href="mailto:xingonplay@gmail.com">xingonplay@gmail.com</a></p>
+<h2>Über diese Website</h2>
+<p>Diese Website informiert über XINGON!, ein Kartenspiel: wie man es spielt, häufige Fragen, ein Video und ein Punktezähler. Über diese Website werden derzeit keine Produkte verkauft.</p>
+<h2>Geistiges Eigentum</h2>
+<p>Der Name XINGON!, das Logo, die Illustrationen und das Kartendesign, die Texte, die Regeln und die Videos sind Werke der Inhaberin. Sie dürfen ohne ihre schriftliche Genehmigung nicht kopiert, verändert oder kommerziell genutzt werden. Links auf diese Website dürfen Sie gerne teilen.</p>
+<h2>Haftung</h2>
+<p>Die Informationen auf dieser Website dienen nur zur Orientierung. Die Inhaberin bemüht sich, sie korrekt und aktuell zu halten, haftet aber nicht für ihre Verwendung.</p>
+<h2>Datenschutz: welche Daten verarbeitet werden</h2>
+<p>Diese Website hat keine Formulare und keine Registrierung und fragt keine personenbezogenen Daten ab.</p>
+<p><strong>Besucherstatistik.</strong> Wir nutzen GoatCounter, um Besuche zusammengefasst zu zählen (aufgerufene Seiten, verweisende Website, Browsertyp und ungefähres Land). Es verwendet keine Cookies, speichert Ihre IP-Adresse nicht, erstellt keine Profile und verfolgt Sie nicht auf anderen Websites.</p>
+<p><strong>Hosting.</strong> Die Website wird bei GitHub Pages (GitHub, Inc.) gehostet. Wie jeder Server kann er technische Verbindungsdaten wie die IP-Adresse aus Sicherheitsgründen protokollieren. Mehr dazu in der <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">Datenschutzerklärung von GitHub</a>.</p>
+<p><strong>Schriftarten.</strong> Die Schriftarten werden von dieser Website selbst geladen; Ihr Browser verbindet sich dafür nicht mit externen Diensten.</p>
+<h2>Cookies und Speicherung im Browser</h2>
+<p>Diese Website verwendet keine Cookies.</p>
+<p>Damit alles wie erwartet funktioniert, speichert Ihr Browser die gewählte Sprache und die Punkte des Punktezählers (lokaler Speicher). Diese Daten bleiben nur auf Ihrem Gerät, werden nirgendwohin gesendet, und Sie können sie jederzeit in den Browsereinstellungen oder mit der Neustart-Taste des Punktezählers löschen.</p>
+<h2>Ihre Rechte</h2>
+<p>Bei Fragen zu Ihren Daten schreiben Sie an <a href="mailto:xingonplay@gmail.com">xingonplay@gmail.com</a>. Sie können außerdem Beschwerde bei der spanischen Datenschutzbehörde einlegen (<a href="https://www.aepd.es" rel="noopener">aepd.es</a>).</p>
+<p class="upd">Zuletzt aktualisiert: November 2026</p>
+<p class="back"><a href="./">← Zurück zu XINGON!</a></p></article><article id="it" lang="it" class="lg" hidden>
+<h1>Note legali e privacy</h1>
+<h2>Titolare del sito</h2>
+<p><strong>Titolare:</strong> Laia Gongxiu Grasas Leon</p>
+<p><strong>Sede:</strong> Barcellona (Spagna)</p>
+<p><strong>Contatto:</strong> <a href="mailto:xingonplay@gmail.com">xingonplay@gmail.com</a></p>
+<h2>Cos’è questo sito</h2>
+<p>Questo sito presenta XINGON!, un gioco di carte: come si gioca, domande frequenti, video e un segnapunti. Al momento non si vendono prodotti tramite questo sito.</p>
+<h2>Proprietà intellettuale</h2>
+<p>Il nome XINGON!, il logo, le illustrazioni e il design delle carte, i testi, le regole e i video sono opera della titolare. Non è consentito copiarli, modificarli o usarli a fini commerciali senza il suo permesso scritto. Puoi invece condividere link a questo sito.</p>
+<h2>Responsabilità</h2>
+<p>Le informazioni di questo sito sono indicative. La titolare si impegna perché siano corrette e aggiornate, ma non è responsabile dell’uso che se ne fa.</p>
+<h2>Privacy: quali dati vengono trattati</h2>
+<p>Questo sito non ha moduli né registrazione, e non ti chiede alcun dato personale.</p>
+<p><strong>Statistiche delle visite.</strong> Usiamo GoatCounter per contare le visite in forma aggregata (pagine viste, sito di provenienza, tipo di browser e paese approssimativo). Non usa cookie, non salva il tuo indirizzo IP, e non crea profili né ti segue su altri siti.</p>
+<p><strong>Hosting.</strong> Il sito è ospitato su GitHub Pages (GitHub, Inc.). Come qualsiasi server, può registrare dati tecnici della connessione, come l’indirizzo IP, per motivi di sicurezza. Maggiori informazioni nell’<a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">informativa sulla privacy di GitHub</a>.</p>
+<p><strong>Caratteri.</strong> I caratteri vengono caricati da questo stesso sito; il tuo browser non si collega a servizi esterni per caricarli.</p>
+<h2>Cookie e archiviazione nel browser</h2>
+<p>Questo sito non usa cookie.</p>
+<p>Per funzionare come previsto, il tuo browser salva la lingua che scegli e i punti del segnapunti (archiviazione locale). Queste informazioni restano solo sul tuo dispositivo, non vengono inviate a nessuno, e puoi cancellarle quando vuoi dalle impostazioni del browser o con il pulsante per ricominciare del segnapunti.</p>
+<h2>I tuoi diritti</h2>
+<p>Per qualsiasi domanda sui tuoi dati, scrivi a <a href="mailto:xingonplay@gmail.com">xingonplay@gmail.com</a>. Puoi anche presentare un reclamo all’Agenzia spagnola per la protezione dei dati (<a href="https://www.aepd.es" rel="noopener">aepd.es</a>).</p>
+<p class="upd">Ultimo aggiornamento: novembre 2026</p>
+<p class="back"><a href="./">← Torna a XINGON!</a></p></article>
 </div>
 <script>
 (function(){
   function show(l){
     document.querySelectorAll('.lg').forEach(function(a){a.hidden = a.id !== l;});
-    document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed', b.dataset.lang === l);});
+    document.getElementById('langsel').value = l;
     document.documentElement.lang = l;
     try { localStorage.setItem('xingon-lang', l); } catch(e) {}
   }
-  document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click', function(){show(b.dataset.lang);});});
+  var OK = ["es", "ca", "en", "fr", "pt", "de", "it"];
+  var sel = document.getElementById('langsel');
+  sel.addEventListener('change', function(){ show(sel.value); });
   var l = (location.hash || '').slice(1);
-  if (['es','ca','en'].indexOf(l) < 0) { try { l = localStorage.getItem('xingon-lang'); } catch(e) { l = null; } }
-  show(['es','ca','en'].indexOf(l) >= 0 ? l : 'es');
+  if (OK.indexOf(l) < 0) { try { l = localStorage.getItem('xingon-lang'); } catch(e) { l = null; } }
+  if (OK.indexOf(l) < 0) {
+    var nl = navigator.languages || [navigator.language || ''];
+    for (var i = 0; i < nl.length; i++) { var c = String(nl[i]).slice(0, 2).toLowerCase(); if (OK.indexOf(c) >= 0) { l = c; break; } }
+  }
+  show(OK.indexOf(l) >= 0 ? l : 'es');
 })();
 </script>
 </body>
