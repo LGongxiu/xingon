@@ -476,7 +476,7 @@ section.rule { scroll-margin-top: calc(var(--barh) + var(--toch) + 16px); }
 }
 .box3d.is-dragging { cursor: grabbing; }
 .box3d:focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; border-radius: 16px; }
-.box3d-box { position: relative; width: var(--w); height: var(--h); transform-style: preserve-3d; transform: rotateX(12deg) rotateY(-18deg); }
+.box3d-box { position: relative; width: var(--w); height: var(--h); transform-style: preserve-3d; transform: rotateX(22deg) rotateY(-18deg); }
 .box3d-face { position: absolute; left: 50%; top: 50%; background: #0b1f52 center / 100% 100% no-repeat; backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; }
 .box3d-shade { position: absolute; inset: 0; background: #000; opacity: .2; pointer-events: none; }
 .f-front, .f-back { width: var(--w); height: var(--h); margin: calc(var(--h) / -2) 0 0 calc(var(--w) / -2); }
@@ -490,7 +490,7 @@ section.rule { scroll-margin-top: calc(var(--barh) + var(--toch) + 16px); }
 .f-top { transform: rotateX(90deg) translateZ(calc(var(--h) / 2)); }
 .f-bottom { transform: rotateX(-90deg) translateZ(calc(var(--h) / 2)); }
 .f-top .box3d-shade { opacity: .45 !important; }
-.f-bottom .box3d-shade { opacity: .18 !important; }
+.f-bottom .box3d-shade { opacity: .05 !important; }
 .box3d-shadow {
   position: absolute; left: 50%; top: calc(50% + var(--h) / 2 + 2px); width: calc(var(--w) * 1.25); height: 34px; transform: translateX(-50%);
   background: radial-gradient(closest-side, rgba(0, 0, 0, .55), rgba(0, 0, 0, 0)); pointer-events: none;
@@ -1234,9 +1234,9 @@ window.xgLangDD = function (onPick) {
   var box = scene.querySelector(".box3d-box");
   var shades = {}; scene.querySelectorAll(".box3d-face").forEach(function (f) { shades[f.dataset.face] = f.querySelector(".box3d-shade"); });
   var NORMAL = { front: 0, right: 90, back: 180, left: -90 };   // yaw angle each side face points at
-  var TILT = 12, AMP = 30, PERIOD = 7.5, IDLE = 3000;
+  var TILT = 22, AMP = 30, PERIOD = 7.5, IDLE = 3000;
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var yaw = -18, pitch = 12, vpitch = 0, vel = 0, lastY = 0, dragging = false, lastX = 0, lastT = 0, lastTouch = -1e9, tau = 0, blend = 1, visible = true, running = false, prev = 0;
+  var yaw = -18, pitch = 22, vpitch = 0, vel = 0, lastY = 0, dragging = false, lastX = 0, lastT = 0, lastTouch = -1e9, tau = 0, blend = 1, visible = true, running = false, prev = 0;
   function render() {
     box.style.transform = "rotateX(" + pitch.toFixed(2) + "deg) rotateY(" + yaw.toFixed(2) + "deg)";
     for (var k in NORMAL) {
